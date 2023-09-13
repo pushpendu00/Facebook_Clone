@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User</title>
+    <link rel="stylesheet" href="/css/user_style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+    
+</head>
+<body>
+    <header>
+        <!-- main logo -->
+        <div id="logo">
+            <img src="/image/logo.jpg" alt="Logo">
+        </div>
+        <!-- search box -->
+        <div id="search">
+            <input type="text" placeholder=" Find your friends....">
+        </div>
+        <!-- user name and logout part -->
+        <div id="user">
+            <!-- creating profile page -->
+            <div id="username">
+                <span>
+                    <a href="/user/profile/<%= recent_user.userName %>/<%= recent_user._id %>" title="Your Profile">
+                        <img src="<%= recent_user.avatar %>" alt="profile">
+                    </a>
+                </span>
+            </div>
+            <div id="logout-div">
+                <form action="/log-out" method="post">
+                    <button type="submit" title="Log-Out">Log out</button>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <!-- main content -->
+    <main>
+        <!-- left side -->
+        <div id="main-div-left">
+
+        </div>
+        <!-- middle postion -->
+        <div id="main-div">
+            <div id="main-div-head">
+                <div class="username">
+                    <img src="<%= recent_user.avatar %>">&nbsp;
+                    <a href="/user/profile/<%= recent_user.userName %>/<%= recent_user._id %>"><%= recent_user.userName %></a>
+                </div>
+                <div id="post-text-area">
+                    <form action="/user/create-post" method="post">
+                        <textarea name="postContent" placeholder="Type here....." required></textarea>
+                        <button type="submit">Post Now</button>
+                    </form>
+                </div>
+            </div>
+            <div id="all-post-list">
+                <ul class="first-ul">
+                    <% for(post of post){ %>
+                        <li class="first-ul-li">
+                            <div class="first-ul-li-head">
+                                <div class="profile">
+                                    
+                                        <img src='<%= post.user.avatar %>' alt="profile">&nbsp;
+                                    
+                                    <a href="/user/profile/<%= post.user.userName %>/<%= post.user._id %>" class="post-profile-name"><%= post.user.userName %></a>
+                                </div>
+                                <% if(recent_user._id == post.user.id){ %>
+                                    <a href="/user/create-post/delete-post/<%= post._id %>">
+                                        <div class="post-three-dot" >
+                                            <!-- <img src="/image/three-dot.png"> -->
+                                            <i class="fa-solid fa-ellipsis-vertical" style="color: #000000;" title="Delete This Post"></i>
+                                        </div>
+                                    </a>
+                                <% } %>
+                            </div>
+                            <%= post.content %><br>
+                            <br>***** Comment *****<br>
+                            <ul class="comment-ul">
+                                <% for(comment of post.comment){ %>
+                                    <li class="comment-ul-li">
+                                        <% if(comment.user._id == recent_user.id){ %>
+                                            <a href="/user/add-comment/delete-comment/<%= comment._id %>" title="Delete your comment">X</a>&nbsp;
+                                        <% } %>
+                                        <span>
+                                            <a href="/user/profile/<%= comment.user.userName %>/<%= comment.user._id %>" class="comment-profile-name">
+                                                <%= comment.user.userName %>
+                                            </a>
+                                        </span> => <%= comment.commentContent %>
+                                    </li>
+                                <% } %>
+                            </ul>
+                            <form action="/user/add-comment" method="post">
+                                <input type="text" name="commentContent" required class="comment-input" placeholder="Comment here....">
+                                <input type="hidden" name="post" value="<%= post._id %>">
+                                <input type="submit" value="add comment" class="add-comment-button">
+                            </form>
+                            <!-- ***** Coment ***** -->
+                        </li> <br>
+                    <% } %>
+                </ul>
+            </div>
+        </div>
+        <!-- right side ( all friends list & all users list)-->
+        <div id="friendship">
+            <%- include('friends_view') -%>
+        </div>
+    </main>
+    
+    
+    <!-- friends_view -->
+<!-- link javascript file -->
+    <script src="/js/user_Js.js"></script>
+
+</body>
+</html>

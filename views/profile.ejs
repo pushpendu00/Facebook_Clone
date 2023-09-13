@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+</head>
+<body><a href="/user">Back to home page</a> <br><br>
+
+    <% if(user.avatar){ %>
+        <img src="<%= user.avatar %>" alt="<%= user.userName %>" style="height: 100px; width: 100px; border-radius: 50%;"><br>
+        <% if(user.id == login_user){ %>
+            <form action="/user/profile/add-profile-photo" enctype="multipart/form-data" method="post">
+                <input type="hidden" name="userId" value="<%= user._id %>">
+                <input type="file" name="avatar" placeholder="profile picture" required>
+                <input type="submit" value="Update profile">
+            </form><br><br>
+        <% } %>
+    <% }else{ %>
+        <img src="/image/profile.png" alt="no profile photo" style="height: 100px; width: 100px; border-radius: 50%;"><br>
+        <% if(user.id == login_user){ %>
+            <form action="/user/profile/add-profile-photo" enctype="multipart/form-data" method="post">
+                <input type="hidden" name="userId" value="<%= user._id %>">
+                <input type="file" name="avatar" placeholder="profile picture" required>
+                <input type="submit" value="Add profile">
+            </form><br><br>
+        <% } %>
+    <% } %>
+
+    
+    
+    Name : <%= user.userName %> <br><br>
+    Email : <%= user.email %> <br><br>
+    All post : 
+    <ol>
+        <% for(post of post){ %>
+            <li>
+                <%= post.content %> <br>comment<br>
+                <% for(comment of post.comment){ %>
+                    <%= comment.user.userName %> => <%= comment.commentContent %> <br>
+                <% } %>
+            </li>
+        <% } %>
+    </ol>
+</body>
+</html>
