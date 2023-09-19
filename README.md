@@ -2,7 +2,6 @@
 User login authentication, user can post, comment of any post. Send friend request, accept request, and delete. 
 Only login user delete post or comment (Like facebook features).
 # visited our site using bellow details : -
-email : user@gmail.com
-password : 12345
-Project not completed.
+email : user@gmail.com & password : 12345
+# Project not completed (Running).
 # Hosted Link : https://8nw73l-4400.csb.app/
