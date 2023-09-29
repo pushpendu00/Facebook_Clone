@@ -1,0 +1,241 @@
+
+@media only screen and (max-width : 600px){
+    #create-post-contener{
+        height: 100%;
+        width: 100%;
+    }
+}
+@media only screen and (min-width : 600px) and (max-width : 900px){
+    #create-post-contener{
+        height: 70%;
+        width: 40%;
+        min-height: 500px;
+
+    }
+}
+@media only screen and (min-width : 900px){
+    #create-post-contener{
+        height: 60%;
+        width: 35%;
+        min-height: 500px;
+        /* min-height: auto; */
+    }
+}
+
+
+#create-post{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(225, 225, 225);
+}
+
+#create-post-contener{
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    & #create-post-header{
+        height: 50px;
+        width: 100%;
+        border-bottom: 0.5px solid rgb(150, 150, 150);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        /* background-color: aquamarine; */
+        & #create-post-header-title{
+            height: 100%;
+            width: 100%;
+            font-size: x-large;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* overflow: hidden; */
+        }
+    }
+    & #close{
+        /* padding-right: 5px; */
+        & i{
+            color: #dcdcdc;
+            cursor: pointer;
+        }
+    }
+    & #close i:hover{
+        color: rgb(193, 41, 41);
+    }
+}
+
+/* profile set */
+#create-post-user{
+    height: 80px;
+    width: 90%;
+    /* padding-bottom: 10px; */
+    /* margin-top: 10px;
+    margin-bottom: 10px; */
+    /* display: flex;
+    align-items: center;
+    justify-content: space-between; */
+    & #create-post-userprofile{
+        /* height: 100%;
+        width: 100%; */
+        margin-top: 10px;
+        margin-bottom: 5px;
+        display: flex;
+        align-items: center;
+    }  
+}
+#create-post-userprofile a img{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+#create-post-user{
+    height: 80%;
+    width: 100%;
+}
+#create-post-username{
+    height: 100%;
+    width: 100%;
+}
+
+#post-text-area{
+    height: 70%;
+    /* max-height: ; */
+    /* max-height: 400px; */
+    width: 100%;
+}
+#post-text-area form{
+    height: 100%;
+    width: 100%;
+}
+
+#post-text-area form textarea{
+    height: 30%;
+    width: 100%;
+    font-size: larger;
+    /* border-radius: 10px; */
+    outline: none;
+    border: none;
+    resize: none;
+    /* overflow-x: scroll; */
+    /* background-color: rgb(240, 240, 240); */
+}
+
+#file-input{
+    height: 60%;
+    width: 100%;
+    border-radius: 10px;
+    display: none;
+    position: relative;
+    overflow-y: auto;
+    border: 0.5px solid black;
+}
+#file-input::-webkit-{
+    display: none;
+}
+
+#file-input-label{
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+}
+#file-input-label:hover{
+    background-color: #e1e1e1;
+}
+
+#file-input-label-div{
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* background-color: #d5d5d5; */
+    & div{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+#show-upload-photo{
+    height:auto;
+    width: 100%;
+    /* position: absolute; */
+    display: none;
+    & img {
+        /* height: 100%; */
+        width: 100%;
+    }
+}
+#remove-upload-photo-xmark{
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background-color: rgb(150, 150, 150);
+    color: white;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+#remove-upload-photo-xmark:hover{
+    background-color: aquamarine;
+    color:  #141414;
+}
+
+/* #remove-upload-photo-xmark:hover #file-input:hover{
+        background-color: rgb(255, 255, 255);
+} */
+
+
+#image-file-input{
+    display: none;
+    visibility: hidden;
+}
+
+#add-image-video-button{
+    height: 50px;
+    width: 100%;
+    background-color: #eeeeee;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    /* justify-content: center; */
+    & div{
+        height: 35px;
+        padding-left: 10px;
+        padding-right: 10px;
+        width: auto;
+        border: none;
+        border-radius: 5px;
+        /* use inline css bellow */
+        /* display: flex;
+        align-items: center; 
+        cursor: pointer; */
+    }
+    & div:hover{
+        background-color: rgb(220, 220, 220);
+    }
+}
+
+#post-text-area form #post-submit{
+    height: 35px;
+    width: 100%;
+    /* width: 80px; */
+    border-radius: 15px;
+    border: none;
+    color: white;
+    background-color: rgb(22, 73, 215);
+    opacity: 0.3;
+    cursor:not-allowed;
+}
+/* #post-text-area form button:hover{
+    background-color: rgb(0, 67, 251);
+} */
