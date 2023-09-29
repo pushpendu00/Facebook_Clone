@@ -1,0 +1,78 @@
+<link rel="stylesheet" href="/css/friends_style.css">
+<!-- <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script> -->
+
+
+    <div id="friends">
+        <div id="head-friends">
+            <div id="head-friends-div">Friends</div>
+            <div id="head-request-div">Friend Request</div>
+        </div>
+        <div id="friend-div">
+            <ul>
+                <% if(recent_user_friend){ %>
+                    <% for(friends of recent_user_friend.allfriend){ %>
+                        <li>
+                            <div class="profile-logo-div">
+                                <img <% if(friends.avatar){ %> src="<%= friends.avatar %>" <% }else{ %> src="/image/profile.png" <% } %> >
+                                <span>&emsp;</span>
+                                <h3>
+                                    <!-- &emsp; -->
+                                    <a href="/user/profile/<%= friends.userName %>/<%= friends._id %>">
+                                        <%= friends.userName %>
+                                    </a>
+                                </h3>
+                            </div>
+                            <h4 class="remove-div" onclick="romoveFriend('<%= friends._id %>')">Remove</h4>
+                        </li>
+                    <% } %>
+                <% } %>
+            </ul>
+        </div>
+        <div id="friend-request-div">
+            <ul>
+                <% if(recent_user_receved.friendContact){ %>
+                    <% for(friend_request of recent_user_receved.friendContact.receveRequest){ %>
+                        <li>
+                            <div class="profile-logo-div">
+                                <img <% if(friend_request.avatar){ %> src="<%= friend_request.avatar %>" <% }else{ %> src="/image/profile.png" <% } %> >
+                                <h4>
+                                    <span>&emsp;</span>
+                                   <!-- &nbsp;  -->
+                                   <a href="/user/profile/<%= friend_request.userName %>/<%= friend_request._id %>"><%= friend_request.userName %></a>
+                                </h4>
+                            </div>
+                            <div class="confirm-delete">
+                                <h5 class="remove-div" onclick="acceptFriendRequest('<%= friend_request._id %>')">Confirm</h5>
+                                <h5 class="remove-div">Delete</h5>
+                            </div>
+                        </li>
+                    <% } %>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+    <div id="main-div-right">
+        <h2>All Users</h2>
+        <ul id="all-users">
+            <% for(allUser of allUser){ %>
+                <% if(allUser.id != recent_user._id){ %>
+                    <li>
+                        <div class="all-users-profile-content">
+                            <img <% if(allUser.avatar){ %> src="<%= allUser.avatar %>" <% }else{ %> src="/image/profile.jpg" <% } %> >
+                            <span>&emsp;</span>
+                            <h4>
+                                <a href="/user/profile/<%= allUser.userName %>/<%= allUser._id %>">
+                                    <%= allUser.userName %>
+                                </a>
+                            </h4>
+                        </div>
+                        <div>
+                            <h5 class="remove-div" onclick="addFriend('<%= allUser._id %>')">Add Friend</h5>
+                        </div>
+                    </li>
+                <% } %>
+            <% } %>
+        </ul>
+    </div>
+
+<script src="/js/friends_script.js"></script>

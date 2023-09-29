@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User</title>
+    <link rel="stylesheet" href="/css/user_style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script> -->
+    <script src="https://ajax.aspnetCDN.com/ajax/jQuery/jQuery-3.3.1.min.js"></script>
+    
+</head>
+<body>
+    <div id="display">
+        <header>
+            <div id="logo-and-search">
+                <!-- main logo -->
+            <div id="logo">
+                <img src="/image/logo.jpg" alt="Logo">
+            </div>
+            <!-- search box -->
+            <div id="search">
+                <input type="text" placeholder="Find your friends....">
+            </div>
+            </div>
+            <!-- user name and logout part -->
+            <div id="user">
+                <div id="notification-div" title="Notifications">
+                    <i id="noti" class="fa-regular fa-bell" style="color: #3e3e3e;"></i>
+                </div>
+                <!-- creating profile page -->
+                <div id="username">
+                        <div title="Account" id="your-profile">
+                            <img src="<%= recent_user.avatar %>" alt="profile">
+                        </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- main content -->
+        <main id="main">
+
+            <!-- left side -->
+            <div id="main-div-left">
+
+            </div>
+           
+            <!-- middle postion -->
+            <div id="main-div">
+                <div id="all-post-list">
+                    <div id="all-post-list-div">
+                        <!-- Show Story field -->
+                        <div id="story">
+                            <div id="story-div">
+                                <div id="story-div-div">
+                                    <div class="story-div-content">
+                                        aaaa
+                                    </div>
+                                    <div class="story-div-content">
+                                        aaaa
+                                    </div>
+                                    <div class="story-div-content">
+                                        aaaa
+                                    </div>
+                                    <div class="story-div-content">
+                                        aaaa
+                                    </div>
+                                    <div class="story-div-content">
+                                        aaaa
+                                    </div>
+                                    <div class="story-div-content">
+                                        aaaa
+                                    </div>
+                                    <div class="story-div-content">
+                                        aaaa
+                                    </div>
+                                    <div class="story-div-content">
+                                        aaaa
+                                    </div>
+                                    <div class="story-div-content">
+                                        aaaa
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="left-arrow">
+                                <i class="fa-solid fa-angle-left fa-xl" style="color: #5e5e5e;"></i>
+                            </div>
+                            <div class="right-arrow">
+                                <i class="fa-solid fa-angle-right fa-xl" style="color: #5e5e5e;"></i>
+                            </div>
+                        </div>
+                        <div id="main-div-head-post">
+                            <div id="main-div-head">
+                                <div id="create-post-profile-section"> 
+                                    <div class="username">
+                                        <a href="/user/profile/<%= recent_user.userName %>/<%= recent_user._id %>">
+                                            <img src="<%= recent_user.avatar %>">&nbsp;
+                                        </a>
+                                    </div>
+                                
+                                    <div id="create-post-onclick">
+                                        What's on your mind, <%= recent_user.userName %>
+                                    </div>
+                                </div>
+                                <div id="create-post-media-section">
+                                    <div id="upload-photo-video">
+                                        <i class="fa-regular fa-image fa-xl" style="color: #37b35c;"></i>
+                                        &nbsp;Photo/video
+                                    </div>
+                                    <!-- <div>
+                                    </div> -->
+                                </div>
+                                <!-- <div class="username">
+                                    <img src="<%= recent_user.avatar %>">&nbsp;
+                                    <a href="/user/profile/<%= recent_user.userName %>/<%= recent_user._id %>"><%= recent_user.userName %></a>
+                                </div>
+                                <div id="post-text-area">
+                                    <form action="/user/create-post" method="post">
+                                        <textarea name="postContent" placeholder="Type here....." required></textarea>
+                                        <button type="submit">Post Now</button>
+                                    </form>
+                                </div> -->
+                            </div>
+                        </div>
+                        <ul class="first-ul">
+                            <% for(post of post){ %>
+                                <li class="first-ul-li" id="post-<%= post._id %>">
+                                    <div class="first-ul-li-head">
+                                        <div class="profile">
+                                            <% if(post.user.avatar){ %>
+                                                <img src='<%= post.user.avatar %>' alt="profile">&nbsp;
+                                            <% }else{ %>
+                                                <img src='/image/profile.jpg' alt="profile">&nbsp;
+                                            <% } %>
+                                            <a href="/user/profile/<%= post.user.userName %>/<%= post.user._id %>" class="post-profile-name"><%= post.user.userName %></a>
+                                        </div>
+                                    <!-- Three dot containt (Delete, Report, Save post) -->
+                                        <div class="post-three-dot" id="post-three-dot-<%= post._id %>" onclick="showThreeDotContent('<%= post._id %>')">
+                                            <!-- <img src="/image/three-dot.png"> -->
+                                            <i class="fa-solid fa-ellipsis-vertical" style="color: #000000;" title="Delete This Post"></i>
+                                        </div>
+                                        <div class="delete-post-ellipsis-content" id="delete-post-ellipsis-content-<%= post._id %>">
+                                            <div class="delete-post-ellipsis-content-xmark" id="delete-post-ellipsis-content-xmark-<%= post._id %>" onclick="hideThreeDotContent('<%= post._id %>')">
+                                                <i class="fa-solid fa-xmark fa-xl" style="color: rgb(244, 37, 37);" ></i>
+                                            </div>
+                                            <div class="delete-post-ellipsis-content-div">
+                                                <% if(recent_user._id == post.user.id){ %>
+                                                    <!-- clicking delete this post -->
+                                                <div onclick="deletePost('<%= post._id %>')">
+                                                    &nbsp;<i class="fa-solid fa-trash fa-lg" style="color: #292929;"></i>
+                                                    &nbsp;Delete This Post
+                                                </div>
+                                                <% } %>
+                                                <div>
+                                                    &nbsp;<i class="fa-solid fa-bookmark fa-lg" style="color: #292929;"></i>
+                                                    &nbsp;Save post
+                                                </div>
+                                                <div>
+                                                    &nbsp;<i class="fa-solid fa-flag fa-lg" style="color: #292929;"></i>
+                                                    &nbsp;Report post
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="post-content">
+                                        <div class="post-content-div">
+                                            <% if(post.content){ %>
+                                                <%= post.content %>
+                                            <% } %> 
+                                            <div class="post-upload-photo">
+                                                <% if(post.post_photo){ %>
+                                                    <img src="<%= post.post_photo %>" alt="post">
+                                                <% } %>
+                                            </div>
+                                        </div>
+                                        
+                                       
+
+                                        <% var like_flag = 0 %>
+                                        <% for(like of post.like){ %>
+                                            <% if(like.user.id == recent_user.id){ %>
+                                                
+                                                <% like_flag = 1 %>
+                                                <% break %>
+                                            <%}%>
+                                        <% } %>
+                                        
+                                        <div class="like-count-div">
+                                            <div id="like-count-first-<%= post.user._id %>-<%= post._id%>">
+                                                <% if(post.totalLike>0){ %>
+                                                        &emsp;<i class="fa-regular fa-thumbs-up fa-sm" style="color: #0e61ef;"></i>
+                                                        <% if(like_flag == 1){ %>
+                                                            <% if(post.totalLike==1){ %>
+                                                                <span class="like-count" id="like-count-div-<%= post.user._id %>-<%= post._id%>">
+                                                                    You 
+                                                                </span>
+                                                                <% }else{ %>
+                                                                    <span class="like-count" id="like-count-div-<%= post.user._id %>-<%= post._id%>">
+                                                                        You and 
+                                                                        <span id="like-count-<%= post.user._id %>-<%= post._id%>">
+                                                                            <%= post.totalLike-1 %>
+                                                                        </span> 
+                                                                        others
+                                                                    </span>
+                                                                <% } %>
+                                                        <% }else{ %>
+                                                            <span class="like-count" id="like-count-div-<%= post.user._id %>-<%= post._id%>">
+                                                                <span id="like-count-<%= post.user._id %>-<%= post._id%>">
+                                                                    <%= post.totalLike %>
+                                                                </span>
+                                                            </span>
+                                                        <% } %>
+                                                <% } %>
+                                            </div>
+                                        </div>
+                                        <!-- like comment and share -->
+                                        <div class="like-comment-share">
+                                            <% if(like_flag==1){ %>
+                                                <div id="<%= post.user._id %>-<%= post._id%>" class="like" onclick="clickLike('<%= post._id %>')"  style="color: #0e61ef;">
+                                                    <i class="fa-regular fa-thumbs-up fa-xl"></i>
+                                                    &nbsp;Like
+                                                </div>       
+                                            <% }else{ %>
+                                                <div id="<%= post.user._id %>-<%= post._id%>" class="like" onclick="clickLike('<%= post._id %>')"  style="color: #262626;">
+                                                    <i class="fa-regular fa-thumbs-up fa-xl"></i>
+                                                    &nbsp;Like
+                                                </div>
+                                            <% } %>
+                                            <div class="comment">
+                                                <i class="fa-regular fa-comment fa-xl"></i>
+                                                &nbsp;Comment
+                                            </div>
+                                            <div class="share">
+                                                <i class="fa-regular fa-share-from-square fa-xl"></i>
+                                                &nbsp;Share
+                                            </div>
+                                            <!-- </div> -->
+                                        </div>
+                                    </div>
+                                    
+
+                                    <!-- <br>***** Comment *****<br> -->
+                                    <ul class="comment-ul">
+                                        <% for(comment of post.comment){ %>
+                                            <li class="comment-ul-li">
+                                                <% if(comment.user._id == recent_user.id){ %>
+                                                    <a href="/user/add-comment/delete-comment/<%= comment._id %>" title="Delete your comment">X</a>&nbsp;
+                                                <% } %>
+                                                <span>
+                                                    <a href="/user/profile/<%= comment.user.userName %>/<%= comment.user._id %>" class="comment-profile-name">
+                                                        <%= comment.user.userName %>
+                                                    </a>
+                                                </span> => <%= comment.commentContent %>
+                                            </li>
+                                        <% } %>
+                                    </ul>
+                                    <form action="/user/add-comment" method="post">
+                                        <input type="text" name="commentContent" required class="comment-input" placeholder="Comment here....">
+                                        <input type="hidden" name="post" value="<%= post._id %>">
+                                        <input type="submit" value="add comment" class="add-comment-button">
+                                    </form>
+                                    <!-- ***** Coment ***** -->
+
+
+                                </li>
+                            <% } %>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- right side ( all friends list & all users list)-->
+            <div id="friendship">
+                <%- include('friends_view') -%>
+            </div>
+            
+        </main>
+
+        <div id="profile-div">
+            <div id="profile-div-cross">
+                <i class="fa-solid fa-xmark fa-lg" style="color: white;" ></i>
+            </div>
+            <a href="/user/profile/<%= recent_user.userName %>/<%= recent_user._id %>" title="Your Profile" id="own-profile">
+                    &emsp;<img src="<%= recent_user.avatar %>" alt="profile">&nbsp;
+                    <h4><%= recent_user.userName %></h4>
+            </a>
+            <hr>
+            <div class="profile-div-list">
+                &emsp;<i class="fa-solid fa-circle-question fa-xl" style="color: #393939;"></i>&emsp;
+                Help & Support
+            </div>
+            <div class="profile-div-list">
+                &emsp;<i class="fa-solid fa-message fa-xl" style="color: #393939;"></i>&emsp;
+                Give Feedback
+            </div>
+            <div id="logout-div" onclick="logOut()" class="profile-div-list">
+                &emsp;<i class="fa-solid fa-arrow-right-from-bracket fa-xl" style="color: #393939;;"></i>&emsp;
+                Log out
+            </div><br>
+            <h5 style="display: flex;align-items: center;justify-content: center;">
+                Pushpendu Jana &copy; 2023
+            </h5>
+        </div>
+
+
+        <div id="footer-content">
+            <div class="footer-content-div">
+                <div class="footer-content-div-i">
+                    <i class="fa-solid fa-house fa-lg" style="color: #4e83df;"></i>
+                </div>
+                <div class="div-button-name"><h5>Home</h5></div>
+            </div>
+            <div class="footer-content-div">
+                <div class="footer-content-div-i">
+                    <i class="fa-solid fa-user-group fa-lg" style="color: #4e83df;"></i>
+                </div>
+                <div class="div-button-name"><h5>Friends</h5></div>
+            </div>
+            <div class="footer-content-div">
+                <div class="footer-content-div-i">
+                    <i class="fa-solid fa-circle-plus fa-lg" style="color: #4e83df;"></i>
+                </div>
+                <div class="div-button-name"><h5>Post</h5></div>
+            </div>
+            <div class="footer-content-div">
+                <div class="footer-content-div-i">
+                    <i class="fa-solid fa-bell fa-lg" style="color: #4e83df;"></i>
+                </div>
+                <div class="div-button-name"><h5>Notifications</h5></div>
+            </div>
+            <div class="footer-content-div">
+                <div class="footer-content-div-i">
+                    <i class="fa-solid fa-comment fa-lg" style="color: #4e83df;"></i>
+                </div>
+                <div class="div-button-name"><h5>Chats</h5></div>
+            </div>
+        </div>
+
+        
+    </div>
+    
+<!-- new page for creating any post like facebook -->
+    <div id="create-post-page">
+        <%- include('create_post') -%>
+    </div>
+
+
+
+<!-- link javascript file -->
+    <script src="/js/user_js.js"></script>
+
+</body>
+</html>

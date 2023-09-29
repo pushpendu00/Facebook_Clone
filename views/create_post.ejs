@@ -1,0 +1,74 @@
+<!-- <div id="close-create-post">
+    
+</div> -->
+
+<link rel="stylesheet" href="/css/create_post_style.css">
+
+<div id="create-post">
+    <div id="create-post-contener">
+        <div id="create-post-header">
+            <div id="create-post-header-title">
+                Create post
+            </div>
+            <div id="close">
+                <i id="close-create-post" class="fa-solid fa-circle-xmark fa-2xl"></i>
+            </div>
+        </div>
+        <div id="create-post-user">
+            <div id="create-post-userprofile">
+                <a href="/user/profile/<%= recent_user.userName %>/<%= recent_user._id %>">
+                    <img src="<%= recent_user.avatar %>">&nbsp;
+                </a>&nbsp;
+                <h3>
+                    <%= recent_user.userName %>
+                </h3>
+            </div>
+            <div id="post-text-area">
+                <form action="/user/post/create" method="post" enctype="multipart/form-data">
+                    <textarea name="postContent" placeholder="What's on your mind, <%= recent_user.userName %>"></textarea>
+                    <div id="file-input">
+                        <!-- image input -->
+                        <div id="file-input-label">
+                            <label for="image-file-input">
+                                <div id="file-input-label-div">
+                                    <div>
+                                        <i class="fa-solid fa-plus fa-xl" style="color: #262626;"></i>
+                                    </div><br>
+                                    <div>
+                                        Add photo
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <!-- show upload photo before uploaded -->
+                        <div id="show-upload-photo">
+                            <img src="" alt="photo">
+                        </div>
+                        <!-- remove uploaded photo -->
+                        <div id="remove-upload-photo-xmark" title="Remove photo">
+                            <i class="fa-solid fa-xmark fa-xl"></i>
+                        </div>
+                    </div>
+                    <input id="image-file-input" type="file" name="uploadPhoto" onchange="check_file_upload()">
+                    <br>
+                    <div id="add-image-video-button">
+                        <span style="display: flex;align-items: center;">
+                            &emsp;Add to your post &emsp;
+                        </span>
+                        <div onclick="show_input_upload_div()" style="display: flex;align-items: center;cursor: pointer;">
+                            <i class="fa-regular fa-image fa-xl" style="color: #37b35c;"></i>
+                            <span>&nbsp; Image</span>
+                        </div>
+                    </div>
+                    <br>
+                    <button type="submit" disabled id="post-submit">Post Now</button>
+                    <!-- <input type="submit" value="Post Now" id="submit-button" disabled> -->
+                </form>
+            </div>
+        </div>
+        
+        <form action="" method="post"></form>
+    </div>
+</div>
+
+<script src="/js/create_post_script.js"></script>
