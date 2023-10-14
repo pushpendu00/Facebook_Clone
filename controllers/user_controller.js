@@ -31,7 +31,7 @@ module.exports.user = async(req,res)=>{
                 path : 'user'
             }
         });
-        let allUser = await userModel.find();
+        let allUser = await userModel.sort({createdAt:-1}).find();
         // console.log(post[0].like[0].id);
         if(recent_user){
             return res.render('user',{
